@@ -1,6 +1,7 @@
 // ~~~~~~ Section for MongoDB
-
 import mongoose from 'mongoose';
+import casual from 'casual';
+import _ from 'lodash';
 
 const mongoDB = 'mongodb://sspy45:fuckthis@ds147979.mlab.com:47979/trump-score';
 
@@ -21,8 +22,7 @@ const Weight = mongoose.model('weight', WeightSchema);
 // ~~~~~~ Section for SQL
 
 import Sequelize from 'sequelize';
-import casual from 'casual';
-import _ from 'lodash';
+
 
 const db = new Sequelize('ratings', null, null, {
   dialect: 'sqlite',
