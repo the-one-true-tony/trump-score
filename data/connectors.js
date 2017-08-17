@@ -49,20 +49,21 @@ db.sync({ force: true }).then(() => {
     return PollsterModel.create({
       name: casual.first_name,
     }).then((pollster) => {
-      return Weight.update(
+      Weight.update(
         { pollsterId: pollster.id },
         { weight: casual.integer(0, 100) },
         { upsert: true }
-      ).then((pollster) => {
-        return pollster.createPoll({
-          type: `${pollster} DISAPPROVAL`,
-          date: '1/1/2015',
-          value: 10,
-        });
+      );
+      return pollster.createPoll({
+        type: `${pollster.name} DISAPPROVAL`,
+        date: '1/1/2015',
+        value: 10,
       });
     });
   });
 });
 
-export const Pollster = db.models.pollster;
-export const Poll = db.models.poll;
+const Pollster = db.models.pollster;
+const Poll = db.models.poll;
+
+export { Pollster, Poll, Weight };

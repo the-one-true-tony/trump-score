@@ -1,4 +1,4 @@
-import { Pollster, Poll } from './connectors';
+import { Pollster, Weight } from './connectors';
 
 const resolvers = {
   Query: {
@@ -9,6 +9,10 @@ const resolvers = {
   Pollster: {
     polls(pollster) {
       return pollster.getPolls();
+    },
+    weight(pollster) {
+      return Weight.findOne({ pollsterId: pollster.id })
+        .then((weight) => weight.weight);
     },
   },
   Poll: {
